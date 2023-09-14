@@ -2,6 +2,7 @@ import sys # BS4「FeatureNotFound」エラー対策
 import requests # インターネットアクセス
 from bs4 import BeautifulSoup # レスポンス整形
 import urllib.parse # パーセントエンコーディング・デコーディング
+import json # JSON形式で検索結果出力のため
 
 sys.path.append("lib.bs4") # BS4エラー対策
 
@@ -58,7 +59,5 @@ keywords = keywords.split()
 
 items = getSearchResults(url, keywords)
 
-if items != None:
-    for k in items:
-        print(k)
-        print(items[k])
+s = json.dumps(items, ensure_ascii=False)
+print(s)
